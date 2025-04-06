@@ -2,9 +2,21 @@ pipeline {
     agent any
 
     stages {
+        stage('Hello') {
+            steps {
+                echo "Hello from pipeline"
+            }
+        }
+
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/vitek-borovsky/Jenkins-mock.git'
+                git url: 'https://github.com/vitek-borovsky/Jenkins-mock.git', branch: 'main'
+            }
+        }
+
+        stage('Get tools') {
+            steps {
+                sh 'sleep 100'
             }
         }
 
