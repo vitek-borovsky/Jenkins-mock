@@ -14,24 +14,10 @@ pipeline {
             }
         }
 
-        stage('Get tools') {
-            steps {
-                sh 'sleep 100'
-            }
-        }
-
-        stage('Build Docker Image') {
-            steps {
-                script {
-                    sh 'docker build -t hello-app .'
-                }
-            }
-        }
-
         stage('Run and Test App') {
             steps {
                 script {
-                    def appStdOut = sh(script: 'docker run -d hello-app', returnStdout: true).trim()
+                    def appStdOut = sh(script: ' ./app.sh', returnStdout: true).trim()
 
                     if (appLogs.contains('Hello World!')) {
                         echo 'App is running correctly!'
